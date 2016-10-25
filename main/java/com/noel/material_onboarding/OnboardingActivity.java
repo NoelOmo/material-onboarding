@@ -54,6 +54,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
+                
 
             }
 
