@@ -24,11 +24,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private int color1 = ContextCompat.getColor(this, R.color.cyan);
-    private int color2 = ContextCompat.getColor(this, R.color.orange);
-    private int color3 = ContextCompat.getColor(this, R.color.green);
-    private int[] colorList = new int[]{color1, color2, color3};
-    final ArgbEvaluator evaluator = new ArgbEvaluator();
+
 
     private ViewPager mViewPager;
 
@@ -36,6 +32,12 @@ public class OnboardingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
+
+        final int color1 = ContextCompat.getColor(this, R.color.cyan);
+        final int color2 = ContextCompat.getColor(this, R.color.orange);
+        final int color3 = ContextCompat.getColor(this, R.color.green);
+        final int[] colorList = new int[]{color1, color2, color3};
+        final ArgbEvaluator evaluator = new ArgbEvaluator();
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
