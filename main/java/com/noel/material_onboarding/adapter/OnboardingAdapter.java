@@ -6,28 +6,33 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.noel.material_onboarding.fragment.OnboardingFragment;
 
-import java.util.List;
+import java.util.ArrayList;
+
 
 /**
  * Created by Noel on 11/12/2016.
  */
 public class OnboardingAdapter extends FragmentPagerAdapter {
 
-    private List<Fragment> fragments;
+    private ArrayList<Fragment> fragments = new ArrayList<>();
 
 
-    public OnboardingAdapter(FragmentManager fm, List<Fragment> fragments) {
+    public OnboardingAdapter(FragmentManager fm) {
         super(fm);
-        this.fragments = fragments;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return OnboardingFragment.newInstance(position + 1);
+        return fragments.get(position);
     }
 
     @Override
     public int getCount() {
         return this.fragments.size();
+    }
+
+    public void addItem(OnboardingFragment fragment){
+        fragments.add(fragments.size(), fragment);
+        this.notifyDataSetChanged();
     }
 }

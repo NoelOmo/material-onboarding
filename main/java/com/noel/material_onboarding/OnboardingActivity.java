@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 
 import com.noel.material_onboarding.adapter.OnboardingAdapter;
 import com.noel.material_onboarding.fragment.OnboardingFragment;
+import com.noel.material_onboarding.fragment.SlideFragmentBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +27,10 @@ import java.util.List;
 public class OnboardingActivity extends AppCompatActivity {
 
 
-    private OnboardingAdapter mOnboardingAdapter;
+    private OnboardingAdapter mOnboardingAdapter = new OnboardingAdapter(getSupportFragmentManager());
     private ViewPager mViewPager;
+
+
 
     ImageButton btnNext;
     Button btnSkip, btnFinish;
@@ -41,7 +44,7 @@ public class OnboardingActivity extends AppCompatActivity {
         btnSkip = (Button) findViewById(R.id.intro_btn_skip);
         btnFinish = (Button) findViewById(R.id.intro_btn_finish);
 
-        List<Fragment> fragmentList = getFragments();
+
 
         final int color1 = ContextCompat.getColor(this, R.color.cyan);
         final int color2 = ContextCompat.getColor(this, R.color.orange);
@@ -49,9 +52,13 @@ public class OnboardingActivity extends AppCompatActivity {
         final int[] colorList = new int[]{color1, color2, color3};
         final ArgbEvaluator evaluator = new ArgbEvaluator();
 
+        addSlide(new SlideFragmentBuilder().description("This is a test").build());
+        addSlide(new SlideFragmentBuilder().description("This is a test 2").build());
+        addSlide(new SlideFragmentBuilder().description("This is a test 3").build());
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mOnboardingAdapter = new OnboardingAdapter(getSupportFragmentManager(), fragmentList);
+
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -86,14 +93,10 @@ public class OnboardingActivity extends AppCompatActivity {
 
     }
 
-
-    public List<Fragment> getFragments(){
-        List<Fragment> fList = new ArrayList<Fragment>();
-        fList.add(OnboardingFragment.newInstance(1));
-        fList.add(OnboardingFragment.newInstance(2));
-        fList.add(OnboardingFragment.newInstance(3));
-        return fList;
+    public void addSlide(OnboardingFragment fragment){
+        mOnboardingAdapter.addItem(fragment);
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -16,14 +16,15 @@ import com.noel.material_onboarding.R;
 public class OnboardingFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
+    private static final String ARG_SLIDE_DESCRIPTION = "slide_description";
 
     public OnboardingFragment() {
     }
 
-    public static OnboardingFragment newInstance(int sectionNumber) {
+    public static OnboardingFragment newInstance(SlideFragmentBuilder builder) {
         OnboardingFragment fragment = new OnboardingFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+        args.putString(ARG_SLIDE_DESCRIPTION, builder.description);
         fragment.setArguments(args);
         return fragment;
     }
@@ -33,7 +34,7 @@ public class OnboardingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_onboarding, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
+        textView.setText(getArguments().getString(ARG_SLIDE_DESCRIPTION));
         return rootView;
     }
 
