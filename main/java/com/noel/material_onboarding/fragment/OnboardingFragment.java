@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.noel.material_onboarding.R;
 
+
 /**
  * Created by Noel on 11/12/2016.
  */
@@ -35,4 +36,6 @@ public class OnboardingFragment extends Fragment {
         textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
         return rootView;
     }
+
+
 }

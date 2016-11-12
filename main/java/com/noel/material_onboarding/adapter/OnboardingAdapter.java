@@ -4,15 +4,21 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.noel.material_onboarding.OnboardingActivity;
 import com.noel.material_onboarding.fragment.OnboardingFragment;
+
+import java.util.List;
 
 /**
  * Created by Noel on 11/12/2016.
  */
 public class OnboardingAdapter extends FragmentPagerAdapter {
-    public OnboardingAdapter(FragmentManager fm) {
+
+    private List<Fragment> fragments;
+
+
+    public OnboardingAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
+        this.fragments = fragments;
     }
 
     @Override
@@ -22,6 +28,6 @@ public class OnboardingAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 3;
+        return this.fragments.size();
     }
 }

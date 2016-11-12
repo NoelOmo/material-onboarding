@@ -2,30 +2,26 @@ package com.noel.material_onboarding;
 
 import android.animation.ArgbEvaluator;
 import android.os.Build;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.noel.material_onboarding.adapter.OnboardingAdapter;
+import com.noel.material_onboarding.fragment.OnboardingFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class OnboardingActivity extends AppCompatActivity {
 
@@ -45,6 +41,8 @@ public class OnboardingActivity extends AppCompatActivity {
         btnSkip = (Button) findViewById(R.id.intro_btn_skip);
         btnFinish = (Button) findViewById(R.id.intro_btn_finish);
 
+        List<Fragment> fragmentList = getFragments();
+
         final int color1 = ContextCompat.getColor(this, R.color.cyan);
         final int color2 = ContextCompat.getColor(this, R.color.orange);
         final int color3 = ContextCompat.getColor(this, R.color.green);
@@ -53,7 +51,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mOnboardingAdapter = new OnboardingAdapter(getSupportFragmentManager());
+        mOnboardingAdapter = new OnboardingAdapter(getSupportFragmentManager(), fragmentList);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -86,10 +84,16 @@ public class OnboardingActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
+
+    public List<Fragment> getFragments(){
+        List<Fragment> fList = new ArrayList<Fragment>();
+        fList.add(OnboardingFragment.newInstance(1));
+        fList.add(OnboardingFragment.newInstance(2));
+        fList.add(OnboardingFragment.newInstance(3));
+        return fList;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
