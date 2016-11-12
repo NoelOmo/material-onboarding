@@ -21,20 +21,27 @@ import android.view.ViewGroup;
 
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class OnboardingActivity extends AppCompatActivity {
 
 
     private SectionsPagerAdapter mSectionsPagerAdapter;
-
-
     private ViewPager mViewPager;
+
+    ImageButton btnNext;
+    Button btnSkip, btnFinish;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
+
+        btnNext = (ImageButton) findViewById(R.id.intro_btn_next);
+        btnSkip = (Button) findViewById(R.id.intro_btn_skip);
+        btnFinish = (Button) findViewById(R.id.intro_btn_finish);
 
         final int color1 = ContextCompat.getColor(this, R.color.cyan);
         final int color2 = ContextCompat.getColor(this, R.color.orange);
@@ -66,7 +73,8 @@ public class OnboardingActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                
+                btnFinish.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
+                btnNext.setVisibility(position == 2 ? View.GONE : View.VISIBLE);
 
             }
 
