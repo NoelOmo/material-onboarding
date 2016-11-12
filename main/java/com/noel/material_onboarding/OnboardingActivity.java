@@ -21,8 +21,6 @@ import com.noel.material_onboarding.adapter.OnboardingAdapter;
 import com.noel.material_onboarding.fragment.OnboardingFragment;
 import com.noel.material_onboarding.fragment.SlideFragmentBuilder;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class OnboardingActivity extends AppCompatActivity {
 
@@ -44,30 +42,29 @@ public class OnboardingActivity extends AppCompatActivity {
         btnSkip = (Button) findViewById(R.id.intro_btn_skip);
         btnFinish = (Button) findViewById(R.id.intro_btn_finish);
 
-
-
         final int color1 = ContextCompat.getColor(this, R.color.cyan);
         final int color2 = ContextCompat.getColor(this, R.color.orange);
         final int color3 = ContextCompat.getColor(this, R.color.green);
         final int[] colorList = new int[]{color1, color2, color3};
         final ArgbEvaluator evaluator = new ArgbEvaluator();
 
-        addSlide(new SlideFragmentBuilder().description("This is a test").build());
-        addSlide(new SlideFragmentBuilder().description("This is a test 2").build());
-        addSlide(new SlideFragmentBuilder().description("This is a test 3").build());
+        addSlide(new SlideFragmentBuilder()
+                .description("This is a test")
+                .build());
+        addSlide(new SlideFragmentBuilder()
+                .description("This is a test 2")
+                .build());
+        addSlide(new SlideFragmentBuilder()
+                .description("This is a test 3")
+                .build());
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-
-
-        // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mOnboardingAdapter);
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                int colorUpdate = (Integer) evaluator.evaluate(positionOffset, colorList[position], colorList[position == 2 ? position : position + 1]);
+                int colorUpdate = (Integer) evaluator.evaluate(positionOffset, colorList[position], colorList[position == mOnboardingAdapter.getLastItemPosition() ? position : position + 1]);
                 mViewPager.setBackgroundColor(colorUpdate);
 
 
@@ -80,8 +77,8 @@ public class OnboardingActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                btnFinish.setVisibility(position == 2 ? View.VISIBLE : View.GONE);
-                btnNext.setVisibility(position == 2 ? View.GONE : View.VISIBLE);
+                btnFinish.setVisibility(position == mOnboardingAdapter.getLastItemPosition() ? View.VISIBLE : View.GONE);
+                btnNext.setVisibility(position == mOnboardingAdapter.getLastItemPosition() ? View.GONE : View.VISIBLE);
 
             }
 

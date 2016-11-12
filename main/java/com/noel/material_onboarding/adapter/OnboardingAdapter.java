@@ -35,4 +35,8 @@ public class OnboardingAdapter extends FragmentPagerAdapter {
         fragments.add(fragments.size(), fragment);
         this.notifyDataSetChanged();
     }
+
+    public int getLastItemPosition() {
+        return fragments.size() - 1;
+    }
 }
