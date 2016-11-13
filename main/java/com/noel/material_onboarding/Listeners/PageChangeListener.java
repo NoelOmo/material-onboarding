@@ -1,5 +1,6 @@
 package com.noel.material_onboarding.Listeners;
 
+import android.animation.ArgbEvaluator;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.view.Window;
@@ -13,20 +14,23 @@ import com.noel.material_onboarding.fragment.OnboardingFragment;
  */
 public class PageChangeListener implements ViewPager.OnPageChangeListener {
     private final OnboardingAdapter adapter;
+    private final ArgbEvaluator evaluator = new ArgbEvaluator();
+
     public PageChangeListener(OnboardingAdapter adapter) {
         this.adapter = adapter;
     }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-        int colorUpdate = (Integer) evaluator.evaluate(positionOffset, colorList[position], colorList[position == mOnboardingAdapter.getLastItemPosition() ? position : position + 1]);
-        mViewPager.setBackgroundColor(colorUpdate);
+        //int colorUpdate = (Integer) evaluator.evaluate(positionOffset, colorList[position], colorList[position == mOnboardingAdapter.getLastItemPosition() ? position : position + 1]);
+        //mViewPager.setBackgroundColor(colorUpdate);
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+       /* if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             Window window = getWindow();
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             window.setStatusBarColor(colorUpdate);
+    }*/
     }
 
     @Override

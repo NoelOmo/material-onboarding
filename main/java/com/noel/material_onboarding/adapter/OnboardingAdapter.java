@@ -1,6 +1,5 @@
 package com.noel.material_onboarding.adapter;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
@@ -14,7 +13,7 @@ import java.util.ArrayList;
  */
 public class OnboardingAdapter extends FragmentPagerAdapter {
 
-    private ArrayList<Fragment> fragments = new ArrayList<>();
+    private ArrayList<OnboardingFragment> fragments = new ArrayList<>();
 
 
     public OnboardingAdapter(FragmentManager fm) {
@@ -22,7 +21,7 @@ public class OnboardingAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public Fragment getItem(int position) {
+    public OnboardingFragment getItem(int position) {
         return fragments.get(position);
     }
 

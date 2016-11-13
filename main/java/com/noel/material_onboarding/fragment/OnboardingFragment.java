@@ -17,6 +17,9 @@ public class OnboardingFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
     private static final String ARG_SLIDE_DESCRIPTION = "slide_description";
+    private static final String ARG_SLIDE_COLOR = "slide_color";
+
+    private int backgroundColor;
 
     public OnboardingFragment() {
     }
@@ -25,6 +28,7 @@ public class OnboardingFragment extends Fragment {
         OnboardingFragment fragment = new OnboardingFragment();
         Bundle args = new Bundle();
         args.putString(ARG_SLIDE_DESCRIPTION, builder.description);
+        args.putInt(ARG_SLIDE_COLOR, builder.backgroundColor);
         fragment.setArguments(args);
         return fragment;
     }
@@ -35,7 +39,12 @@ public class OnboardingFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_onboarding, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
         textView.setText(getArguments().getString(ARG_SLIDE_DESCRIPTION));
+        backgroundColor = getArguments().getInt(ARG_SLIDE_COLOR);
         return rootView;
+    }
+
+    public int backgroundColor() {
+        return backgroundColor;
     }
 
 
