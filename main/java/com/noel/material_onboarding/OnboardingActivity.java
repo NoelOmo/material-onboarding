@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+import com.noel.material_onboarding.Listeners.PageChangeListener;
 import com.noel.material_onboarding.adapter.OnboardingAdapter;
 import com.noel.material_onboarding.fragment.OnboardingFragment;
 import com.noel.material_onboarding.fragment.SlideFragmentBuilder;
@@ -60,6 +61,8 @@ public class OnboardingActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mOnboardingAdapter);
+
+        mViewPager.addOnPageChangeListener(new PageChangeListener(mOnboardingAdapter));
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
