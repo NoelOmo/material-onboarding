@@ -22,13 +22,15 @@ import com.noel.material_onboarding.adapter.OnboardingAdapter;
 import com.noel.material_onboarding.fragment.OnboardingFragment;
 import com.noel.material_onboarding.fragment.SlideFragmentBuilder;
 
+import java.util.ArrayList;
+
 
 public class OnboardingActivity extends AppCompatActivity {
 
 
     private OnboardingAdapter mOnboardingAdapter = new OnboardingAdapter(getSupportFragmentManager());
     private ViewPager mViewPager;
-
+     ArrayList<Integer> colorList = new ArrayList<>();
 
 
     ImageButton btnNext;
@@ -46,7 +48,7 @@ public class OnboardingActivity extends AppCompatActivity {
         final int color1 = ContextCompat.getColor(this, R.color.cyan);
         final int color2 = ContextCompat.getColor(this, R.color.orange);
         final int color3 = ContextCompat.getColor(this, R.color.green);
-        final int[] colorList = new int[]{color1, color2, color3};
+
         final ArgbEvaluator evaluator = new ArgbEvaluator();
 
         addSlide(new SlideFragmentBuilder()
@@ -65,6 +67,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mOnboardingAdapter);
+        setupColors();
 
         //mViewPager.addOnPageChangeListener(new PageChangeListener(mOnboardingAdapter));
         //colorList[position == mOnboardingAdapter.getLastItemPosition() ? position : position + 1]
@@ -72,7 +75,7 @@ public class OnboardingActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                int colorUpdate = (Integer) evaluator.evaluate(positionOffset, color(mOnboardingAdapter.getItem(position).backgroundColor()), position == mOnboardingAdapter.getLastItemPosition() ? mOnboardingAdapter.getItem(position).backgroundColor() : mOnboardingAdapter.getItem(position + 1).backgroundColor() );
+                int colorUpdate = (Integer) evaluator.evaluate(positionOffset, colorList.get(position), colorList.get(position) == mOnboardingAdapter.getLastItemPosition() ? colorList.get(position) : colorList.get(position + 1));
                 mViewPager.setBackgroundColor(colorUpdate);
 
 
@@ -100,6 +103,14 @@ public class OnboardingActivity extends AppCompatActivity {
 
     private int color(@ColorRes int color){
         return ContextCompat.getColor(this, color);
+
+    }
+    public void setupColors(){
+        int i = 1;
+        while (i < mOnboardingAdapter.getCount()){
+            colorList.add(ContextCompat.getColor(this, mOnboardingAdapter.getItem(i).backgroundColor()));
+            i++;
+        }
 
     }
 
