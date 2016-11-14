@@ -67,7 +67,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mOnboardingAdapter);
-        setupColors();
+        //setupColors();
 
         //mViewPager.addOnPageChangeListener(new PageChangeListener(mOnboardingAdapter));
         //colorList[position == mOnboardingAdapter.getLastItemPosition() ? position : position + 1]
@@ -75,7 +75,7 @@ public class OnboardingActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                int colorUpdate = (Integer) evaluator.evaluate(positionOffset, colorList.get(position), colorList.get(position) == mOnboardingAdapter.getLastItemPosition() ? colorList.get(position) : colorList.get(position + 1));
+                int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(position).backgroundColor()));
                 mViewPager.setBackgroundColor(colorUpdate);
 
 
@@ -107,7 +107,7 @@ public class OnboardingActivity extends AppCompatActivity {
     }
     public void setupColors(){
         int i = 1;
-        while (i < mOnboardingAdapter.getCount()){
+        while (i < mOnboardingAdapter.getCount() - 1){
             colorList.add(ContextCompat.getColor(this, mOnboardingAdapter.getItem(i).backgroundColor()));
             i++;
         }
