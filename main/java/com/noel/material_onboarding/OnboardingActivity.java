@@ -17,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import com.noel.material_onboarding.adapter.OnboardingAdapter;
 import com.noel.material_onboarding.fragment.OnboardingFragment;
@@ -31,6 +32,7 @@ public class OnboardingActivity extends AppCompatActivity {
     private OnboardingAdapter mOnboardingAdapter = new OnboardingAdapter(getSupportFragmentManager());
     private ViewPager mViewPager;
      ArrayList<Integer> colorList = new ArrayList<>();
+    private TextView tvCount;
 
 
     ImageButton btnNext;
@@ -44,6 +46,7 @@ public class OnboardingActivity extends AppCompatActivity {
         btnNext = (ImageButton) findViewById(R.id.intro_btn_next);
         btnSkip = (Button) findViewById(R.id.intro_btn_skip);
         btnFinish = (Button) findViewById(R.id.intro_btn_finish);
+        tvCount = (TextView) findViewById(R.id.tvCount);
 
         final int color1 = ContextCompat.getColor(this, R.color.cyan);
         final int color2 = ContextCompat.getColor(this, R.color.orange);
@@ -75,7 +78,8 @@ public class OnboardingActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(position).backgroundColor()));
+                tvCount.setText("Position " + String.valueOf(position) + "\nBGColor " + String.valueOf(mOnboardingAdapter.getItem(position).backgroundColor()) + "\n Total number of items " + String.valueOf(mOnboardingAdapter.getCount()));
+                /*int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(position).backgroundColor()));
                 mViewPager.setBackgroundColor(colorUpdate);
 
 
@@ -83,7 +87,7 @@ public class OnboardingActivity extends AppCompatActivity {
                     Window window = getWindow();
                     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                     window.setStatusBarColor(colorUpdate);
-                }
+                }*/
             }
 
             @Override
