@@ -66,6 +66,10 @@ public class OnboardingActivity extends AppCompatActivity {
                 .description("This is a test 3")
                 .backgroundColor(R.color.orange)
                 .build());
+        addSlide(new SlideFragmentBuilder()
+                .description("This is a test 4")
+                .backgroundColor(R.color.orange)
+                .build());
 
 
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -78,8 +82,7 @@ public class OnboardingActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                tvCount.setText("Position " + String.valueOf(position) + "\nBGColor " + String.valueOf(mOnboardingAdapter.getItem(position).backgroundColor()) + "\n Total number of items " + String.valueOf(mOnboardingAdapter.getCount()));
-                /*int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(position).backgroundColor()));
+               int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(position + 1).backgroundColor()));
                 mViewPager.setBackgroundColor(colorUpdate);
 
 
@@ -87,7 +90,7 @@ public class OnboardingActivity extends AppCompatActivity {
                     Window window = getWindow();
                     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
                     window.setStatusBarColor(colorUpdate);
-                }*/
+                }
             }
 
             @Override
