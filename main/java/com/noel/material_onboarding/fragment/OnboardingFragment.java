@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.noel.material_onboarding.Color;
 import com.noel.material_onboarding.R;
 
 
@@ -20,6 +21,7 @@ public class OnboardingFragment extends Fragment {
     private static final String ARG_SLIDE_COLOR = "slide_color";
 
     private int backgroundColor;
+
 
     public OnboardingFragment() {
     }
@@ -38,8 +40,10 @@ public class OnboardingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_onboarding, container, false);
         TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-        textView.setText(getArguments().getString(ARG_SLIDE_DESCRIPTION));
-        backgroundColor = getArguments().getInt(ARG_SLIDE_COLOR);
+
+        Bundle bundle = getArguments();
+        textView.setText(bundle.getString(ARG_SLIDE_DESCRIPTION));
+        backgroundColor = bundle.getInt(ARG_SLIDE_COLOR);
         return rootView;
     }
 

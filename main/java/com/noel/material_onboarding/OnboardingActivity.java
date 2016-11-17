@@ -30,6 +30,7 @@ public class OnboardingActivity extends AppCompatActivity {
 
 
     private OnboardingAdapter mOnboardingAdapter = new OnboardingAdapter(getSupportFragmentManager());
+    Color backgroundColor = new Color();
     private ViewPager mViewPager;
      ArrayList<Integer> colorList = new ArrayList<>();
     private TextView tvCount;
@@ -82,8 +83,10 @@ public class OnboardingActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-               int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(position + 1).backgroundColor()));
+               int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(position).backgroundColor()));
                 mViewPager.setBackgroundColor(colorUpdate);
+
+                tvCount.setText(String.valueOf(backgroundColor.bgsize()));
 
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
