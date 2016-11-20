@@ -2,8 +2,8 @@ package com.noel.material_onboarding;
 
 import android.animation.ArgbEvaluator;
 import android.os.Build;
+
 import android.support.annotation.ColorRes;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 
@@ -17,23 +17,18 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.noel.material_onboarding.adapter.OnboardingAdapter;
 import com.noel.material_onboarding.fragment.OnboardingFragment;
 import com.noel.material_onboarding.fragment.SlideFragmentBuilder;
 
-import java.util.ArrayList;
 
 
 public class OnboardingActivity extends AppCompatActivity {
 
 
     private OnboardingAdapter mOnboardingAdapter = new OnboardingAdapter(getSupportFragmentManager());
-    Color backgroundColor = new Color();
     private ViewPager mViewPager;
-     ArrayList<Integer> colorList = new ArrayList<>();
-    private TextView tvCount;
 
 
     ImageButton btnNext;
@@ -47,11 +42,6 @@ public class OnboardingActivity extends AppCompatActivity {
         btnNext = (ImageButton) findViewById(R.id.intro_btn_next);
         btnSkip = (Button) findViewById(R.id.intro_btn_skip);
         btnFinish = (Button) findViewById(R.id.intro_btn_finish);
-        tvCount = (TextView) findViewById(R.id.tvCount);
-
-        final int color1 = ContextCompat.getColor(this, R.color.cyan);
-        final int color2 = ContextCompat.getColor(this, R.color.orange);
-        final int color3 = ContextCompat.getColor(this, R.color.green);
 
         final ArgbEvaluator evaluator = new ArgbEvaluator();
 
@@ -69,24 +59,20 @@ public class OnboardingActivity extends AppCompatActivity {
                 .build());
         addSlide(new SlideFragmentBuilder()
                 .description("This is a test 4")
-                .backgroundColor(R.color.orange)
+                .backgroundColor(R.color.cyan)
                 .build());
 
 
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mOnboardingAdapter);
-        //setupColors();
-
-        //mViewPager.addOnPageChangeListener(new PageChangeListener(mOnboardingAdapter));
-        //colorList[position == mOnboardingAdapter.getLastItemPosition() ? position : position + 1]
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-               int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(position).backgroundColor()));
-                mViewPager.setBackgroundColor(colorUpdate);
 
-                tvCount.setText(String.valueOf(backgroundColor.bgsize()));
+               int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(positionOffset != 0.0 ? position + 1 : position).backgroundColor()));
+                mViewPager.setBackgroundColor(colorUpdate);
 
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -113,14 +99,6 @@ public class OnboardingActivity extends AppCompatActivity {
 
     private int color(@ColorRes int color){
         return ContextCompat.getColor(this, color);
-
-    }
-    public void setupColors(){
-        int i = 1;
-        while (i < mOnboardingAdapter.getCount() - 1){
-            colorList.add(ContextCompat.getColor(this, mOnboardingAdapter.getItem(i).backgroundColor()));
-            i++;
-        }
 
     }
 
