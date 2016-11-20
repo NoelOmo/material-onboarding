@@ -28,7 +28,8 @@
         android:paddingEnd="@dimen/activity_horizontal_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingStart="@dimen/activity_horizontal_margin">
+        android:paddingStart="@dimen/activity_horizontal_margin"
+        android:background="#fff">
         <Button
             android:id="@+id/intro_btn_skip"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|center"
             android:text="Skip"
-            android:textColor="@android:color/white" />
+            android:textColor="#1b1b1b" />
 
         <!-- This overlaps the next button in the last slide -->
         <Button
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center"
             android:text="Finish"
-            android:textColor="@android:color/white"
+            android:textColor="#1b1b1b"
             android:visibility="gone" />
         <ImageButton
             android:id="@+id/intro_btn_next"
@@ -57,12 +58,6 @@
             android:src="@drawable/ic_chevron_right"
             android:textColor="@android:color/white" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/tvCount"
-            android:layout_gravity="center_horizontal|top" />
     </FrameLayout>
 
 
