@@ -8,9 +8,14 @@ public class SlideFragmentBuilder {
     int backgroundColor;
     String title;
     String description;
+    int image;
 
     public SlideFragmentBuilder backgroundColor(int backgroundColor) {
         this.backgroundColor = backgroundColor;
+        return this;
+    }
+    public SlideFragmentBuilder image(int image){
+        this.image = image;
         return this;
     }
 

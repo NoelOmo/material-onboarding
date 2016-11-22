@@ -46,20 +46,24 @@ public class OnboardingActivity extends AppCompatActivity {
         final ArgbEvaluator evaluator = new ArgbEvaluator();
 
         addSlide(new SlideFragmentBuilder()
-                .description("This is a test")
+                .description("This is a clipboard")
                 .backgroundColor(R.color.colorPrimary)
+                .image(R.drawable.clipboard)
                 .build());
         addSlide(new SlideFragmentBuilder()
-                .description("This is a test 2")
+                .description("A bag")
                 .backgroundColor(R.color.green)
+                .image(R.drawable.bag)
                 .build());
         addSlide(new SlideFragmentBuilder()
-                .description("This is a test 3")
+                .description("We now see a marvin")
                 .backgroundColor(R.color.orange)
+                .image(R.drawable.marvin)
                 .build());
         addSlide(new SlideFragmentBuilder()
-                .description("This is a test 4")
+                .description("Here is the school")
                 .backgroundColor(R.color.cyan)
+                .image(R.drawable.school)
                 .build());
 
 
