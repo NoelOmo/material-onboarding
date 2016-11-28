@@ -39,6 +39,21 @@ public class OnboardingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_onboarding);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window w = getWindow();
+            w.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            w.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+            w.setFlags(
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            w.setNavigationBarColor(getResources().getColor(android.R.color.transparent));
+
+            w.setStatusBarColor(getResources().getColor(android.R.color.transparent));
+
+        }
+
         btnNext = (ImageButton) findViewById(R.id.intro_btn_next);
         btnSkip = (Button) findViewById(R.id.intro_btn_skip);
         btnFinish = (Button) findViewById(R.id.intro_btn_finish);
@@ -78,12 +93,6 @@ public class OnboardingActivity extends AppCompatActivity {
                int colorUpdate = (Integer) evaluator.evaluate(positionOffset,  color(mOnboardingAdapter.getItem(position).backgroundColor()), color(mOnboardingAdapter.getItem(positionOffset != 0.0 ? position + 1 : position).backgroundColor()));
                 mViewPager.setBackgroundColor(colorUpdate);
 
-
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Window window = getWindow();
-                    window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-                    window.setStatusBarColor(colorUpdate);
-                }
             }
 
             @Override
